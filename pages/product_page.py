@@ -14,14 +14,14 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.add_to_cart_button),"No add to cart button"
         self.find_element(*ProductPageLocators.add_to_cart_button).click()
         self.solve_quiz_and_get_code()
-        time.sleep(5)
+        #time.sleep(5)
 
     def check_item_added(self,name,price):
         assert self.is_element_present(*ProductPageLocators.alertmsgs), "No alerts at all"
         alert_msgs = self.find_elements(*ProductPageLocators.alertmsgs)
         flag = 0
         for am in alert_msgs:
-            print (am.text)
+
             if am.text == name:
                 flag += 1
             if am.text == price:

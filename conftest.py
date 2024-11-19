@@ -34,16 +34,13 @@ if BASE_DIR == "":
     exit(1)
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default='firefox', help="Choose browser: chrome or firefox")
+    parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
 
 
 @pytest.fixture(scope="function")
 def browser(request):
     marker = request.node.get_closest_marker("browser")
-    if marker:
-        print("marker", marker)
-    else:
-        print("no marker")
+
     if marker and marker.args[0] == "mobile":
         btype = "mobile"
     elif marker and marker.args[0] == "tablet":
